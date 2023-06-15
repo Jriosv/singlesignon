@@ -7,12 +7,12 @@ else
 fi
 
 if [ ! -d "$ve_dir" ]; then
-  python3.8 -m venv "$ve_dir"
+  python -m venv "$ve_dir"
 fi
 
-"$ve_dir"/bin/pip install -r requirements.txt
+"$ve_dir"/Scripts/pip install -r requirements.txt
 
-ve/bin/python mysite/manage.py migrate
-ve/bin/python mysite/manage.py flush
-ve/bin/python mysite/manage.py loaddata mysite/fixtures/data.json
+ve/Scripts/python mysite/manage.py migrate
+ve/Scripts/python mysite/manage.py flush
+ve/Scripts/python mysite/manage.py loaddata mysite/fixtures/data.json
 

@@ -1,3 +1,3 @@
 #!/bin/sh -e
 
-ve/bin/python mysite/manage.py test polls
+ve/Scripts/python mysite/manage.py test polls

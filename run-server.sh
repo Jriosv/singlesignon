@@ -1,3 +1,3 @@
 #!/bin/sh -e
 
-ve/bin/python mysite/manage.py runserver
+ve/Scripts/python mysite/manage.py runserver
