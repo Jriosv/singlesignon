@@ -8,13 +8,14 @@ def is_profile_complete(user):
     form_fields = form.form_fields['fields']
     required_fields = [field['id'] for field in form_fields if field['required']]
     
-    #['job_title','location']
-    #
+    allowed_data = ['london','spain','bulgaria','Manager']
+    is_complete = None
+    if 'location' in user.profile.dynamic_fields:
+        if user.profile.dynamic_fields['location'] not in allowed_data:
+            is_complete = False
+    else:
+        is_complete = all([field in user.profile.dynamic_fields for field in required_fields])
     
-    
-    #print(required_fields)
-    #print(user.profile.dynamic_fields)
-    is_complete = all([field in user.profile.dynamic_fields for field in required_fields])
     return is_complete
 
 class ProfileRedirectionMiddleware:
