@@ -7,6 +7,13 @@ def is_profile_complete(user):
     form = models.ProfileForm.objects.get(site=site)
     form_fields = form.form_fields['fields']
     required_fields = [field['id'] for field in form_fields if field['required']]
+    
+    #['job_title','location']
+    #
+    
+    
+    #print(required_fields)
+    #print(user.profile.dynamic_fields)
     is_complete = all([field in user.profile.dynamic_fields for field in required_fields])
     return is_complete
 
@@ -18,7 +25,7 @@ class ProfileRedirectionMiddleware:
     def __call__(self, request):
         # Code to be executed for each request before
         # the view (and later middleware) are called.
-
+        
         response = self.get_response(request)
 
         # Code to be executed for each request/response after
@@ -38,4 +45,8 @@ class ProfileRedirectionMiddleware:
             and request.path not in skip_urls
             and not is_profile_complete(current_user)
         ):
+            #print(current_user)
             return HttpResponseRedirect(reverse_lazy("my_profile"))
+        else:
+           
+            pass #print(current_user.profile.dynamic_fields)
